@@ -20,7 +20,25 @@ class Jam:
         self.perbaui()
 
 2
-3
+	def perbaui(self):
+		datJam = time.strftime("%H:%M:%S", time.localtime())
+
+		jam = time.strftime("%H", time.localtime())
+		menit = time.strftime("%M", time.localtime())
+		detik = time.strftime("%S", time.localtime())
+
+		if jam==self.comboJam.get() and menit==self.comboMenit.get() and (detik=='00') and self.hidupMati.get() :
+			pygame.init()
+			pygame.mixer.init()
+			pygame.mixer.music.load(self.fileMusik)
+			pygame.mixer.music.play()
+			self.alarmHidup=True
+
+		if self.alarmHidup and pygame.mixer.music.get_busy()==False :
+			self.perintahSetAlarm()
+
+		self.teksJam.set(datJam)
+		self.timer = self.parent.after(1000, self.perbaui)
 	def buatComboBox(self):
 		Label(self.frameAlarm, text='Jam : ').grid(row=0,column=0)
 		self.alarmJam = StringVar()
@@ -44,7 +62,7 @@ class Jam:
 
 		self.frameAlarm.pack()
 
- def buatTombol(self):
+	def buatTombol(self):
         self.tombolSet = Button(self.frameAlarm,textvariable=self.teksTombol,command=self.perintahSetAlarm).grid(row=0,column=4)
 
     def perintahSetAlarm(self):
@@ -60,10 +78,10 @@ class Jam:
                 pygame.mixer.music.stop()
             except :
                 pass
-            self.teks.config(text="mn-belajarpython.blogspot.com")
+            self.teks.config(text="KELOMPOK 7")
 
 if __name__ == '__main__':
     root = Tk()
-    root.title("jam digital")
+    root.title("Alarm")
     app = Jam(root)
     root.mainloop()

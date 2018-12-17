@@ -44,4 +44,26 @@ class Jam:
 
 		self.frameAlarm.pack()
 
-5
+ def buatTombol(self):
+        self.tombolSet = Button(self.frameAlarm,textvariable=self.teksTombol,command=self.perintahSetAlarm).grid(row=0,column=4)
+
+    def perintahSetAlarm(self):
+        if self.teksTombol.get() == 'set' :
+            self.teksTombol.set('stop')
+            self.hidupMati.set(True)
+            self.teks.config(text='Alarm Terpasang.!! pada -> '+ self.comboJam.get()+' : '+self.comboMenit.get() )
+        else :
+            self.hidupMati.set(False)
+            self.teksTombol.set('set')
+            self.alarmHidup=False
+            try :
+                pygame.mixer.music.stop()
+            except :
+                pass
+            self.teks.config(text="mn-belajarpython.blogspot.com")
+
+if __name__ == '__main__':
+    root = Tk()
+    root.title("jam digital")
+    app = Jam(root)
+    root.mainloop()

@@ -11,7 +11,7 @@ class Jam:
         self.hidupMati = BooleanVar(False)
         self.teksTombol = StringVar(value='set')
 
-        self.fileMusik = 'Aisah.mp3'
+        self.fileMusik = 'Tayo.mp3'
         self.alarmHidup=False
 
         self.komponen()

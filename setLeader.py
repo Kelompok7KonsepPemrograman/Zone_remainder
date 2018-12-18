@@ -19,7 +19,6 @@ class Jam:
         self.buatTombol()
         self.perbaui()
 
-class jam:
 	def komponen(self):
 		self.texsjam = stringvar()
 		self.teks =label(teks="KELOMPOK7")
